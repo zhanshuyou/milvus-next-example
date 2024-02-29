@@ -14,6 +14,7 @@ import "google/protobuf/descriptor.proto";
 
 // Deprecated
 enum ErrorCode {
+    option deprecated = true;
     Success = 0;
     UnexpectedError = 1;
     ConnectFailed = 2;
@@ -70,7 +71,7 @@ enum ErrorCode {
     DiskQuotaExhausted = 54;
     TimeTickLongDelay = 55;
     NotReadyServe = 56;
-    // Coord is switching from standby mode to active mode 
+    // Coord is switching from standby mode to active mode
     NotReadyCoordActivating = 57;
 
     // Service availability.
@@ -102,9 +103,11 @@ enum SegmentState {
 }
 
 message Status {
-    ErrorCode error_code = 1;
+    ErrorCode error_code = 1 [deprecated=true];
     string reason = 2;
     int32 code = 3;
+    bool retriable = 4;
+    string detail = 5;
 }
 
 message KeyValuePair {
@@ -126,6 +129,7 @@ enum PlaceholderType {
     BinaryVector = 100;
     FloatVector = 101;
     Float16Vector = 102;
+    BFloat16Vector = 103;
     Int64 = 5;
     VarChar = 21;
 }
@@ -165,7 +169,7 @@ enum MsgType {
     RenameCollection = 112;
     DescribeAlias = 113;
     ListAliases = 114;
-    
+
     /* DEFINITION REQUESTS: PARTITION */
     CreatePartition = 200;
     DropPartition = 201;
@@ -280,6 +284,13 @@ message MsgBase {
     uint64 timestamp = 3;
     int64 sourceID = 4;
     int64 targetID = 5;
+    map<string, string> properties = 6;
+    ReplicateInfo replicateInfo = 7;
+}
+
+message ReplicateInfo {
+    bool isReplicate = 1;
+    uint64 msgTimestamp = 2;
 }
 
 enum DslType {

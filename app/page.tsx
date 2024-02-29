@@ -1,17 +1,24 @@
-/**
- * This option is equivalent to getServerSideProps() in the pages directory.
- * https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
- */
-export const dynamic = 'force-dynamic';
-
-const HOST = 'http://localhost:3000';
+import { MilvusClient } from "@zilliz/milvus2-sdk-node";
 
 async function getData() {
-  return fetch(HOST + '/api/milvus').then(res => res.json());
+	const milvusClient = new MilvusClient({
+		address: process.env.DB_ADDRESS ?? "",
+		token: process.env.DB_PUBLIC_TOKEN ?? "",
+	});
+
+	let res: any = await milvusClient.getMetric({
+		request: { metric_type: "system_info" },
+	});
+
+	const result = res.response.nodes_info.map((v: any) => {
+		return v.infos;
+	});
+
+	return result;
 }
 
 export default async function Home() {
-  const data = await getData();
+	const data = await getData();
 
-  return <>{JSON.stringify(data)}</>;
+	return <>{JSON.stringify(data)}</>;
 }
