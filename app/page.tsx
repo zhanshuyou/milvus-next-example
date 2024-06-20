@@ -1,4 +1,5 @@
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";
+import { getVectorStore } from "./langchain";
 
 async function getData() {
 	const milvusClient = new MilvusClient({
@@ -18,7 +19,9 @@ async function getData() {
 }
 
 export default async function Home() {
-	const data = await getData();
+	// const data = await getData();
+	const vectorStore = await getVectorStore();
+	const data = await vectorStore.similaritySearch("question");
 
 	return <>{JSON.stringify(data)}</>;
 }
