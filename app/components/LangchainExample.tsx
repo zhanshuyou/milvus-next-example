@@ -3,17 +3,44 @@
 import { useState } from "react";
 
 export const LangchainExample = () => {
-	const [data, setData] = useState<any>();
+	const [dataGet, setDataGet] = useState<any>();
+	const [dataPost, setDataPost] = useState<any>();
+	const [dataPut, setDataPut] = useState<any>();
 
-	const handleClick = async () => {
-		const data = await fetch("/api/langchain").then((res) => res.json());
-		setData(data);
+	const handleGetClick = async () => {
+		const res = await fetch("/api/langchain");
+		const data = await res.json();
+		setDataGet(data);
+	};
+
+	const handlePostClick = async () => {
+		const res = await fetch("/api/langchain", { method: "POST" });
+		const data = await res.json();
+		setDataPost(data);
+	};
+
+	const handlePutClick = async () => {
+		const res = await fetch("/api/langchain", { method: "PUT" });
+		const data = await res.json();
+		setDataPut(data);
 	};
 
 	return (
-		<div>
-			<button onClick={handleClick}>Get Vector Data</button>
-			<div>{JSON.stringify(data)}</div>
-		</div>
+		<section>
+			<div>
+				<button onClick={handleGetClick}>Request: GET</button>
+				<div>GET Response: {JSON.stringify(dataGet)}</div>
+			</div>
+			<br />
+			<div>
+				<button onClick={handlePostClick}>Request: POST</button>
+				<div>POST Response: {JSON.stringify(dataPost)}</div>
+			</div>
+			<br />
+			<div>
+				<button onClick={handlePutClick}>Request: PUT</button>
+				<div>PUT Response: {JSON.stringify(dataPut)}</div>
+			</div>
+		</section>
 	);
 };
