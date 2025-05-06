@@ -4,6 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { getData } from "@/app/utils/milvus";
 
+const linkConfigs = [
+  {
+    label: "Data Operations",
+    href: "/data",
+  },
+  {
+    label: "Collection Operations",
+    href: "/collections",
+  },
+  {
+    label: "LangChain",
+    href: "/langchain",
+  },
+];
+
 export default async function Home() {
   const data = await getData();
   return (
@@ -13,28 +28,19 @@ export default async function Home() {
           {JSON.stringify(data)}
         </AlertDescription>
       </Alert>
+
       <ul className="mt-6">
-        <li>
-          <Link href="/data">
-            <Button variant="link" className="hover:text-cyan-500">
-              Data Operations
-            </Button>
-          </Link>
-        </li>
-        <li>
-          <Link href="/collection">
-            <Button variant="link" className="hover:text-cyan-500">
-              Collection Operations
-            </Button>
-          </Link>
-        </li>
-        <li>
-          <Link href="/langchain">
-            <Button variant="link" className="hover:text-cyan-500">
-              LangChain
-            </Button>
-          </Link>
-        </li>
+        {linkConfigs.map((item) => {
+          return (
+            <li key={item.href}>
+              <Link href={item.href}>
+                <Button variant="link" className="hover:text-cyan-500">
+                  {item.label}
+                </Button>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
