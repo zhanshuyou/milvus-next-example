@@ -11,7 +11,7 @@ const linkConfigs = [
   },
   {
     label: "Collection Operations",
-    href: "/collections",
+    href: "/collection",
   },
   {
     label: "LangChain",
