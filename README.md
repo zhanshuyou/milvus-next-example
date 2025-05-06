@@ -13,7 +13,7 @@ npx create-next-app@latest
 Then, install Milvus Node SDK:
 
 ```bash
-pnpm add @zilliz/milvus2-sdk-node
+yarn add @zilliz/milvus2-sdk-node
 ```
 
 ## Configuration
