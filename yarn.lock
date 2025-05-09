@@ -2378,10 +2378,10 @@ micromatch@^4.0.4, micromatch@^4.0.5:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
-milvus-sdk@^2.6.1:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/milvus-sdk/-/milvus-sdk-2.6.2.tgz#721d3f5584aaf74f01755aeea2a57831b4c2694f"
-  integrity sha512-KS5rxWDgnfMnCYmp1T17TBXO0vVJvJZLtHpl2bJqDIXsv8pI/Yz8iT8Np6E+GjYUd2P2tvUc3bmX7osizXw6eg==
+milvus-sdk@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/milvus-sdk/-/milvus-sdk-2.6.3.tgz#95662baacedb9772bb908b02d84b45b94d635e9e"
+  integrity sha512-FUWVUXr4p7uZ0SeYnhiGYbpESVdlieWtUiSOrAFn/MjTeJgmfqZKuCdQJOTFZuo7yNtmZrqMsVVrpBcqYTDInw==
   dependencies:
     "@grpc/grpc-js" "^1.12.1"
     "@grpc/proto-loader" "^0.7.10"

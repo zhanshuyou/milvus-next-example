@@ -18,31 +18,9 @@ yarn add @zilliz/milvus2-sdk-node
 
 ## Configuration
 
+Update `next.config.js`, Server-side bundling ignores @zilliz/milvus2-sdk-node.
+
 Fixed the issue of "Unable to load service: milvus.proto.milvus.MilvusService"
-
-There may be two reasons why this problem occurs
-
-1. Pages use [static rendering](https://nextjs.org/docs/app/building-your-application/rendering/server-components#static-rendering-default)
-2. `next.config.js` missing [configuration](https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages)
-
-You can change pages which are using @zilliz/milvus2-sdk-node to [dynamic rendering](https://nextjs.org/docs/app/building-your-application/rendering/server-components#dynamic-rendering), recommended [connection()](https://nextjs.org/docs/app/api-reference/functions/connection) function.
-
-```tsx
-import { connection } from "next/server";
-import { getCollections } from "@/app/utils/milvus";
-
-export default async function Collection() {
-  await connection();
-  const { data: collections } = await getCollections();
-
-  const sortedCollections = [...collections].sort((a, b) => {
-    return Number(b.timestamp) - Number(a.timestamp);
-  });
-  ...
-}
-```
-
-Or update `next.config.js`
 
 ```javascript
 /* Next.js version 15 */

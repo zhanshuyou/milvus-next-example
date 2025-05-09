@@ -1,4 +1,3 @@
-import { connection } from "next/server";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,6 @@ const linkConfigs = [
 ];
 
 export default async function Home() {
-  await connection();
   const data = await getData();
   return (
     <div className="p-4">
