@@ -2378,6 +2378,21 @@ micromatch@^4.0.4, micromatch@^4.0.5:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
+milvus-sdk@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/milvus-sdk/-/milvus-sdk-2.6.0.tgz#a728d03d5f673fc96a0e6b2933477a58be1b9c5c"
+  integrity sha512-tvlPDoo/LfHqIrj6YBBaZm0KATOSjoXrAXtgT2I/mvgHBCkqDT39ZURokt1exboA20ktKzso/zcciWcbw9Kt2g==
+  dependencies:
+    "@grpc/grpc-js" "^1.12.1"
+    "@grpc/proto-loader" "^0.7.10"
+    "@opentelemetry/api" "^1.9.0"
+    "@petamoriken/float16" "^3.8.6"
+    dayjs "^1.11.7"
+    generic-pool "^3.9.0"
+    lru-cache "^9.1.2"
+    protobufjs "^7.2.6"
+    winston "^3.9.0"
+
 mime-db@1.52.0:
   version "1.52.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.52.0.tgz#bbabcdc02859f4987301c856e3387ce5ec43bf70"
