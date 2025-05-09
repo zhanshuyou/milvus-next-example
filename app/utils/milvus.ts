@@ -41,3 +41,11 @@ export async function insertData(collectionName: string, data: RowData[]) {
 
   return res;
 }
+
+export async function getCollections() {
+  const milvusClient = getMilvusClient();
+
+  const res = await milvusClient.listCollections();
+
+  return res;
+}
