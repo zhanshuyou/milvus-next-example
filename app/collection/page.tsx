@@ -1,6 +1,8 @@
+import { connection } from "next/server";
 import { getCollections } from "@/app/utils/milvus";
 
 export default async function Collection() {
+  await connection();
   const { data: collections } = await getCollections();
 
   const sortedCollections = [...collections].sort((a, b) => {
