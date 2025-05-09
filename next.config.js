@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ["milvus-sdk"],
   // serverExternalPackages: ["@zilliz/milvus2-sdk-node"],
   // outputFileTracingIncludes: {
   //   // When deploying to Vercel, the following configuration is required
