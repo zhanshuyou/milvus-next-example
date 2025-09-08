@@ -1,4 +1,4 @@
-import "milvus-sdk";
+import "@zilliz/milvus2-sdk-node";
 
 import { LangchainExample } from "../components/LangchainExample";
 

@@ -1,47 +1,37 @@
+"use client";
+
 import Link from "next/link";
+import useSWR from "swr";
+import axios from "axios";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { getData } from "@/app/utils/milvus";
-
-const linkConfigs = [
-  {
-    label: "Data Operations",
-    href: "/data",
-  },
-  {
-    label: "Collection Operations",
-    href: "/collection",
-  },
-  {
-    label: "LangChain",
-    href: "/langchain",
-  },
-];
-
-export default async function Home() {
-  const data = await getData();
+export default function Home() {
+  const { data: databases } = useSWR(["/api/milvus/databases"], async () => {
+    const res = await axios.get<{
+      db_names: string[];
+      db_ids: string[];
+      created_timestamp: string[];
+    }>("/api/milvus/databases");
+    return res.data;
+  });
   return (
-    <div className="p-4">
-      <Alert>
-        <AlertDescription className="text-gray-500">
-          {JSON.stringify(data)}
-        </AlertDescription>
-      </Alert>
-
-      <ul className="mt-6">
-        {linkConfigs.map((item) => {
-          return (
-            <li key={item.href}>
-              <Link href={item.href}>
-                <Button variant="link" className="hover:text-cyan-500">
-                  {item.label}
-                </Button>
+    <div className="p-4 grid">
+      <Card className="max-w-sm">
+        <CardHeader>
+          <CardTitle>
+            Databases ({databases?.db_names.length ?? "--"})
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {databases?.db_names.map((db) => {
+            return (
+              <Link key={db} href={`/database/${db}`}>
+                {db}
               </Link>
-            </li>
-          );
-        })}
-      </ul>
+            );
+          })}
+        </CardContent>
+      </Card>
     </div>
   );
 }

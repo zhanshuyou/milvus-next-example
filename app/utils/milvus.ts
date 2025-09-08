@@ -1,4 +1,4 @@
-import { MilvusClient, type RowData } from "milvus-sdk";
+import { MilvusClient, type RowData } from "@zilliz/milvus2-sdk-node";
 
 let milvusClient: MilvusClient;
 
