@@ -2,6 +2,7 @@
 
 import { FC, useState } from "react";
 import { ChevronRight } from "lucide-react";
+import { useParams } from "next/navigation";
 import {
   Collapsible,
   CollapsibleContent,
@@ -17,14 +18,16 @@ type Props = {
 
 export const Database: FC<Props> = (props) => {
   const { database: db } = props;
-  const [open, setOpen] = useState(false);
+  const { databaseName } = useParams();
+  const defaultOpen = databaseName === db.name;
+  const [open, setOpen] = useState(defaultOpen);
 
   const onOpenChange = (open: boolean) => {
     setOpen(open);
   };
 
   return (
-    <Collapsible onOpenChange={onOpenChange}>
+    <Collapsible onOpenChange={onOpenChange} defaultOpen={defaultOpen}>
       <CollapsibleTrigger className="w-full text-left">
         <div className="py-1 px-2 rounded-md hover:bg-muted cursor-pointer text-sm font-medium flex items-center justify-between">
           <span className="flex-1 truncate">{db.name}</span>

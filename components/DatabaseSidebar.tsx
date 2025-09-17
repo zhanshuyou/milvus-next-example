@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Databases as DatabaseComponent } from "@/components/Databases";
 
-export function AppSidebar({ children }: { children: React.ReactNode }) {
+export function DatabaseSidebar({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
       <Sidebar>
@@ -27,7 +27,7 @@ export function AppSidebar({ children }: { children: React.ReactNode }) {
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
-      <main>
+      <main className="w-full h-screen p-2">
         <SidebarTrigger />
         {children}
       </main>

@@ -1,11 +1,14 @@
 "use client";
 
-import { AppSidebar } from "@/components/AppSidebar";
+import { useLayoutEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return (
-    <AppSidebar>
-      <div className="p-4 grid">Home</div>
-    </AppSidebar>
-  );
+  const router = useRouter();
+
+  useLayoutEffect(() => {
+    router.push("/databases");
+  }, []);
+
+  return null;
 }
