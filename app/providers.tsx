@@ -3,8 +3,10 @@
 import { SWRConfig } from "swr";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { LOCAL_STORAGE_KEYS } from "@/consts/local-storage";
 import { useLayoutEffect } from "react";
+
+import { LOCAL_STORAGE_KEYS } from "@/consts/local-storage";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -36,5 +38,9 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  return <SWRConfig value={{}}>{children}</SWRConfig>;
+  return (
+    <SWRConfig value={{}}>
+      <SidebarProvider>{children}</SidebarProvider>
+    </SWRConfig>
+  );
 };
