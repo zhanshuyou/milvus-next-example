@@ -1,5 +1,11 @@
 "use client";
 
+import { AppSidebar } from "@/components/AppSidebar";
+
 export default function Home() {
-  return <div className="p-4 grid">Home</div>;
+  return (
+    <AppSidebar>
+      <div className="p-4 grid">Home</div>
+    </AppSidebar>
+  );
 }

@@ -1,8 +1,5 @@
 "use client";
 
-import { Search, Settings, Database } from "lucide-react";
-import { usePathname } from "next/navigation";
-
 import {
   Sidebar,
   SidebarContent,
@@ -10,22 +7,30 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
+  SidebarTrigger,
+  SidebarProvider,
 } from "@/components/ui/sidebar";
 import { Databases as DatabaseComponent } from "@/components/Databases";
 
-export function AppSidebar() {
+export function AppSidebar({ children }: { children: React.ReactNode }) {
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Databases</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <DatabaseComponent />
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+    <SidebarProvider>
+      <Sidebar>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Databases</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <DatabaseComponent />
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+      <main>
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }
