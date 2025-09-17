@@ -1,4 +1,4 @@
-import { DataExample } from "../components/DataExample";
+import { DataExample } from "../../modules/DataExample";
 
 export default async function Data() {
   return (
