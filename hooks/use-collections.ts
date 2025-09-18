@@ -1,5 +1,4 @@
 import useSWR from "swr";
-
 import axios from "axios";
 
 export interface Status {
@@ -29,10 +28,9 @@ type CollectionResponse = {
 };
 
 export const useCollections = (database: string) => {
-  return useSWR(["/api/milvus/collections", database], async () => {
-    const res = await axios.get<CollectionResponse>("/api/milvus/collections", {
-      params: { database },
-    });
+  const path = `/api/milvus/databases/${database}/collections`;
+  return useSWR([path], async () => {
+    const res = await axios.get<CollectionResponse>(path);
     return res.data.data.sort((a, b) => {
       return Number(b.timestamp) - Number(a.timestamp);
     });

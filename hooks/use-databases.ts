@@ -23,8 +23,9 @@ const defaultResponse = {
 };
 
 export const useDatabases = () => {
-  return useSWR(["/api/milvus/databases"], async () => {
-    const res = await axios.get<DatabaseResponse>("/api/milvus/databases");
+  const path = "/api/milvus/databases";
+  return useSWR([path], async () => {
+    const res = await axios.get<DatabaseResponse>(path);
     const { db_names, db_ids, created_timestamp } = res.data ?? defaultResponse;
     const list: DatabaseListSchema = db_names
       .map((name, index) => ({

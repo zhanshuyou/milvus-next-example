@@ -10,6 +10,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { CollectionDetail } from "@/components/CollectionDetail";
 
 export default function CollectionPage() {
   const { databaseName, collectionName } = useParams();
@@ -32,6 +33,8 @@ export default function CollectionPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
+      <CollectionDetail />
     </div>
   );
 }
